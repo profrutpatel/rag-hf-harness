@@ -4,6 +4,8 @@ import remarkGfm from 'remark-gfm'
 import GPUStats from './components/GPUStats.jsx'
 import SourceCard from './components/SourceCard.jsx'
 import HarnessPanel from './HarnessPanel.jsx'
+import FactCheckerPanel from './FactCheckerPanel.jsx'
+import TrendPanel from './TrendPanel.jsx'
 
 // ---- typing animation hook ----
 function useTypingEffect(text, speed = 12) {
@@ -200,6 +202,20 @@ export default function App() {
             >
               ⚡ Harness
             </button>
+            <button
+              id="btn-mode-factcheck"
+              className={`mode-btn ${mode === 'factcheck' ? 'active' : ''}`}
+              onClick={() => setMode('factcheck')}
+            >
+              🛡️ Fact Check
+            </button>
+            <button
+              id="btn-mode-trends"
+              className={`mode-btn ${mode === 'trends' ? 'active' : ''}`}
+              onClick={() => setMode('trends')}
+            >
+              📈 Trends
+            </button>
           </div>
 
           {/* Status */}
@@ -308,6 +324,16 @@ export default function App() {
           {/* ---- HARNESS MODE ---- */}
           {mode === 'harness' && (
             <HarnessPanel engineStatus={engineStatus} />
+          )}
+
+          {/* ---- FACT CHECK MODE ---- */}
+          {mode === 'factcheck' && (
+            <FactCheckerPanel />
+          )}
+
+          {/* ---- TRENDS MODE ---- */}
+          {mode === 'trends' && (
+            <TrendPanel />
           )}
 
         </div>
